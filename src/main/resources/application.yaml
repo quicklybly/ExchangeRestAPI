@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: exchangeuser
+    password: exchangepass
+    url: jdbc:postgresql://localhost:5432/exchangedb
+  sql:
+    init:
+      mode: always
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    open-in-view: true
+server:
+  port: 8000
+  servlet:
+    context-path: /api

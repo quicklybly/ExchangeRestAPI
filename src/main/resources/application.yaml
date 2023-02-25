@@ -1,9 +1,11 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
+    port: 5432
+    database-name: exchangedb
     username: exchangeuser
     password: exchangepass
-    url: jdbc:postgresql://localhost:5432/exchangedb
+    url: jdbc:postgresql://localhost:${spring.datasource.port}/${spring.datasource.database-name}
   sql:
     init:
       mode: always
@@ -17,3 +19,6 @@ server:
   port: 8000
   servlet:
     context-path: /api
+jwt:
+  secret: 4529482B4D6251655468576D5A7134743777217A25432A462D4A614E63526655
+  time-to-expire: 86400000

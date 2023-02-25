@@ -5,6 +5,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,22 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
+@RequiredArgsConstructor
 public class JWTService {
-    private static final String SECRET_KEY = "4529482B4D6251655468576D5A7134743777217A25432A462D4A614E63526655";
-    private static final long TIME_TO_EXPIRE = 1000L * 60L * 60L * 24L;
+    private static String SECRET_KEY;
+
+    @Value("${jwt.secret}")
+    public void setSecretKey(String secretKey) {
+        SECRET_KEY = secretKey;
+    }
+
+    private static long TIME_TO_EXPIRE;
+
+    @Value("${jwt.time-to-expire}")
+    public void setTimeToExpire(Long timeToExpire) {
+        TIME_TO_EXPIRE = timeToExpire;
+    }
+
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

@@ -1,9 +1,9 @@
 package com.quicklybly.exchangerestapi.controllers;
 
-import com.quicklybly.exchangerestapi.dto.AuthResponse;
-import com.quicklybly.exchangerestapi.dto.LoginDTO;
-import com.quicklybly.exchangerestapi.dto.SecretKeyDTO;
-import com.quicklybly.exchangerestapi.dto.SignUpDTO;
+import com.quicklybly.exchangerestapi.dto.auth.AuthResponse;
+import com.quicklybly.exchangerestapi.dto.auth.LoginDTO;
+import com.quicklybly.exchangerestapi.dto.auth.SecretKeyDTO;
+import com.quicklybly.exchangerestapi.dto.auth.SignUpDTO;
 import com.quicklybly.exchangerestapi.services.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;

@@ -1,13 +1,16 @@
 package com.quicklybly.exchangerestapi.services;
 
-import com.quicklybly.exchangerestapi.dto.AuthResponse;
-import com.quicklybly.exchangerestapi.dto.LoginDTO;
-import com.quicklybly.exchangerestapi.dto.SecretKeyDTO;
-import com.quicklybly.exchangerestapi.dto.SignUpDTO;
+import com.quicklybly.exchangerestapi.dto.auth.AuthResponse;
+import com.quicklybly.exchangerestapi.dto.auth.LoginDTO;
+import com.quicklybly.exchangerestapi.dto.auth.SecretKeyDTO;
+import com.quicklybly.exchangerestapi.dto.auth.SignUpDTO;
 import com.quicklybly.exchangerestapi.entities.Role;
 import com.quicklybly.exchangerestapi.entities.UserEntity;
 import com.quicklybly.exchangerestapi.entities.enums.RoleEnum;
 import com.quicklybly.exchangerestapi.exceptions.AppException;
+import com.quicklybly.exchangerestapi.exceptions.auth.EmailIsTakenException;
+import com.quicklybly.exchangerestapi.exceptions.auth.UserNotFoundException;
+import com.quicklybly.exchangerestapi.exceptions.auth.UsernameIsTakenException;
 import com.quicklybly.exchangerestapi.repositories.RoleRepository;
 import com.quicklybly.exchangerestapi.repositories.UserRepository;
 import com.quicklybly.exchangerestapi.security.JWTService;
@@ -35,10 +38,10 @@ public class AuthService {
 
     public SecretKeyDTO signUp(SignUpDTO signUpDTO) {
         if (userRepo.existsByUsername(signUpDTO.getUsername())) {
-            throw new AppException("Username is taken", HttpStatus.CONFLICT);
+            throw new UsernameIsTakenException();
         }
         if (userRepo.existsByEmail(signUpDTO.getEmail())) {
-            throw new AppException("Email is taken", HttpStatus.CONFLICT);
+            throw new EmailIsTakenException();
         }
         //TODO exception logging
         Role roles = roleRepo.findByName(RoleEnum.ROLE_USER)
@@ -63,7 +66,7 @@ public class AuthService {
         );
         UserEntity user = userRepo
                 .findByUsername(loginDTO.getUsername())
-                .orElseThrow(() -> new AppException("User not found", HttpStatus.BAD_REQUEST));
+                .orElseThrow(UserNotFoundException::new);
         return new AuthResponse(jwtService.generateToken(user));
     }
 

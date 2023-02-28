@@ -1,4 +1,4 @@
-package com.quicklybly.exchangerestapi.dto;
+package com.quicklybly.exchangerestapi.dto.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

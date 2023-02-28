@@ -13,9 +13,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Embeddable
 public class WalletKey implements Serializable {
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "currency_id")
+    @Column(name = "currency_id", nullable = false)
     private Long currencyId;
 }

@@ -1,12 +1,11 @@
 package com.quicklybly.exchangerestapi.entities;
 
+import com.quicklybly.exchangerestapi.entities.enums.CurrencyType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 import java.util.Set;
 
@@ -17,16 +16,7 @@ import java.util.Set;
 @Entity
 public class Currency {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceCurrencyGenerator")
-    @GenericGenerator(
-            name = "sequenceCurrencyGenerator",
-            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-            parameters = {
-                    @Parameter(name = "sequence_name", value = "currency_sequence"),
-                    @Parameter(name = "initial_value", value = "20"),
-                    @Parameter(name = "increment_size", value = "1")
-            }
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -34,4 +24,16 @@ public class Currency {
 
     @OneToMany(mappedBy = "firstCurrency")
     private Set<ExchangeRate> currenciesAvailableToExchange;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private CurrencyType currencyType;
+
+    public boolean isCrypto() {
+        return CurrencyType.CRYPTO.equals(this.currencyType);
+    }
+
+    public boolean isFiat() {
+        return CurrencyType.FIAT.equals(this.currencyType);
+    }
 }

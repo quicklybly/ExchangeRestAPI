@@ -1,5 +1,6 @@
 package com.quicklybly.exchangerestapi.security;
 
+import com.quicklybly.exchangerestapi.entities.enums.RoleEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +35,10 @@ public class SecurityConfig {
                 .authenticationProvider(authProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests()
+                .requestMatchers("/admin/**").hasAuthority(RoleEnum.ROLE_ADMIN.name())
+                .requestMatchers("/exchange-rates")
+                .hasAnyAuthority(RoleEnum.ROLE_ADMIN.name(), RoleEnum.ROLE_USER.name())
+                .requestMatchers("/**").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.POST, "/sign-up", "/login").permitAll()
                 .anyRequest().authenticated();
         return http.build();

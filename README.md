@@ -87,6 +87,7 @@ docker-compose up --build -d
   В случае отсутствия header'a ответ будет в формате JSON
 * Подключена документация Swagger
 Для доступа к Swagger нужно перейти по [ссылке](http://localhost:8000/api/swagger-ui/index.html)
+Не получилось подключить JWT токены к Swagger'у, приходится вручную его вставлять. 
 * Настроен Docker-compose Приложение + база данных.
 
 ## Демонстрация

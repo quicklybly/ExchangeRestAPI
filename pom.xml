@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.quicklybly</groupId>
     <artifactId>ExchangeRestAPI</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0</version>
     <name>ExchangeRestAPI</name>
     <description>ExchangeRestAPI</description>
     <properties>
@@ -20,6 +20,8 @@
         <jackson-dataformat-xml.version>2.14.1</jackson-dataformat-xml.version>
         <jackson-core.version>2.14.2</jackson-core.version>
         <jjwt.version>0.11.5</jjwt.version>
+        <hashids.version>1.0.3</hashids.version>
+        <springdoc-openapi-starter-webmvc.version>2.0.2</springdoc-openapi-starter-webmvc.version>
     </properties>
     <dependencies>
         <dependency>
@@ -33,6 +35,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <dependency>
@@ -82,6 +92,23 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>${jjwt.version}</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hashids</groupId>
+            <artifactId>hashids</artifactId>
+            <version>${hashids.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+            <version>${springdoc-openapi-starter-webmvc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc-openapi-starter-webmvc.version}</version>
         </dependency>
     </dependencies>
 

@@ -4,6 +4,16 @@
       "name": "jwt.time-to-expire",
       "type": "java.lang.Long",
       "description": "Time after JWT token expires. Provided in milliseconds."
+    },
+    {
+      "name": "spring.mail.url",
+      "type": "java.lang.String",
+      "description": "Link template for account activation."
+    },
+    {
+      "name": "crypto-tools.salt",
+      "type": "java.lang.String",
+      "description": "Salt,which is using for id hashing."
     }
   ]
 }

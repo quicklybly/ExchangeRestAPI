@@ -32,8 +32,11 @@ public class UserEntity implements UserDetails {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(unique = true, nullable = false, name = "secret_key")
+    @Column(unique = true, name = "secret_key")
     private String password;
+
+    @Column(nullable = false, name = "is_active")
+    private boolean isActive;
 
     @OneToMany(mappedBy = "userEntity")
     private List<Wallet> wallet;
@@ -67,6 +70,6 @@ public class UserEntity implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isActive;
     }
 }

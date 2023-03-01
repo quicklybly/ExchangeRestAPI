@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .requestMatchers("/user/exchange-rates")
                 .hasAnyAuthority(RoleEnum.ROLE_ADMIN.name(), RoleEnum.ROLE_USER.name())
                 .requestMatchers("/user/**").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/auth/**", "/mail/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .anyRequest().authenticated();
         return http.build();
     }

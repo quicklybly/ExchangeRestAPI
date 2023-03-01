@@ -86,7 +86,7 @@ docker-compose up --build -d
   Для этого можно установить header accept:application/json или accept:application/xml
   В случае отсутствия header'a ответ будет в формате JSON
 * Подключена документация Swagger
-Для доступа к Swagger нужно перейти по [ссылке] (http://localhost:8000/api/swagger-ui/index.html)
+Для доступа к Swagger нужно перейти по [ссылке](http://localhost:8000/api/swagger-ui/index.html)
 * Настроен Docker-compose Приложение + база данных.
 
 ## Демонстрация
